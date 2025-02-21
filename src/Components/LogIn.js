@@ -5,8 +5,7 @@ export default function LogIn() {
   const context = useContext(NoteContext);
   const {Login}=context;
 
-  const[creds,setcreds]=useState({email:"",password:""})
-
+const [creds,setcreds]=useState({email:"",password:""});
 
 const handlesubmit=(e)=>{
   e.preventDefault();

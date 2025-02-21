@@ -46,8 +46,23 @@ export default function Navbar() {
     UniNotebook
   </h1>
 </div>
-<Link type="button"  to="/LogIn" className="btn btn-primary mx-2">LogIn</Link>
-<Link   type="button" to="/SignUp" className="btn btn-primary">SignUp</Link>
+<>
+  {sessionStorage.getItem("token") ? (
+    <Link type="button" to="/LogOut" className="btn btn-primary mx-2">
+      Logout
+    </Link>
+  ) : (
+    <>
+      <Link type="button" to="/LogIn" className="btn btn-primary mx-2">
+        LogIn
+      </Link>
+      <Link type="button" to="/SignUp" className="btn btn-primary">
+        SignUp
+      </Link>
+    </>
+  )}
+</>
+
 
  
            </div>

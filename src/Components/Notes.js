@@ -10,7 +10,7 @@ export default function Notes() {
   let navigate=useNavigate();
 
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if(sessionStorage.getItem("token")){
           getNotes();
     }
     else{
@@ -77,7 +77,7 @@ export default function Notes() {
        { notes.length===0 ?"You have no notes" :notes.map((note) => {
           return <Noteitem key={note._id} note={note} updateNote={updateNote} />;
         })}
-       
+
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const Showalert = (type,msg ) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token")
+        "auth-token": sessionStorage.getItem("token")
       },
       body: JSON.stringify({ title, description, tag })
     });
@@ -51,7 +51,8 @@ const Showalert = (type,msg ) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token")
+        "auth-token": sessionStorage.getItem("token")
+        
       }
     });
 
@@ -66,7 +67,7 @@ const Showalert = (type,msg ) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token")
+        "auth-token": sessionStorage.getItem("token")
       },
       body: JSON.stringify({ title, description , tag })
     });
@@ -83,7 +84,7 @@ const Showalert = (type,msg ) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("token")
+        "auth-token": sessionStorage.getItem("token")
       }
     });
     const json = await response.json();
@@ -91,29 +92,25 @@ const Showalert = (type,msg ) => {
     setNotes(newNotes);
     Showalert(json.successMessages[0].type,json.successMessages[0].msg)
   };
-  const Login = async (email,password) => {
-  
+  const Login = async (email, password) => {
     const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password })
-  
-  });
+      body: JSON.stringify({ email, password }),
+    });
     const json = await response.json();
-  console.log(json)
-  if(json.success){
-    localStorage.setItem("token",json.authtoken)
-    Showalert(json.type,json.msg)
-    navigate("/Home")
-
-    
-  }
-  else{
-    Showalert("warning","invalid credentials")
-  }
+    console.log(json);
   
+    if (json.success) {
+      sessionStorage.setItem("token", json.authtoken); 
+      console.log("Token stored in sessionStorage:", sessionStorage.getItem("token")); // Debugging
+      Showalert(json.type, json.msg);
+      navigate("/Home");
+    } else {
+      Showalert("warning", "Invalid credentials");
+    }
   };
   const SingUp = async (email,password,name) => {
   
@@ -128,7 +125,7 @@ const Showalert = (type,msg ) => {
   const json = await response.json();
   console.log(json)
   if(json.success){
-    localStorage.setItem("token",json.authtoken)
+    sessionStorage.setItem("token",json.authtoken)
     Showalert(json.type,json.msg)
     navigate("/LogIn")
   }
@@ -140,7 +137,7 @@ const Showalert = (type,msg ) => {
 
  
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, alert,Login,SingUp}}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes, alert,Login,SingUp,}}>
       {props.children}
     </NoteContext.Provider>
   );

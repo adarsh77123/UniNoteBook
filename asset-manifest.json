@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/UniNoteBook/static/css/main.dead67f8.css",
+    "main.js": "/UniNoteBook/static/js/main.d1c731e9.js",
+    "index.html": "/UniNoteBook/index.html",
+    "main.dead67f8.css.map": "/UniNoteBook/static/css/main.dead67f8.css.map",
+    "main.d1c731e9.js.map": "/UniNoteBook/static/js/main.d1c731e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dead67f8.css",
+    "static/js/main.d1c731e9.js"
+  ]
+}
